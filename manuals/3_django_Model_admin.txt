@@ -1,0 +1,32 @@
+Django have 'admin' page, to easily handle websites and etc.
+
+1. add {app} (Model) to administration (127.0.0.1:8000/admin/)
+    > vim blog/admin.py
+    > in vim
+        >>> from django.contrib import admin # (basis)
+        >>> from .models import {app} # import {app} from current directory
+        >>>
+        >>> admin.site.register({app}) # register {app} on site
+
+
+    after here, admin url (127.0.0.1:8000/admin/) will be able after running webserver (by $ python manage.py runserver)
+
+2. make superuser for /admin/ page
+
+    as virtualenv activated, 
+
+    > python manage.py createsuperuser
+
+        $ Username :
+        $ Email address :
+        $ Password :
+        $ Password (again) :
+        $ Superuser created successfully.
+
+    and login with the superuser in website (/admin/)
+    check Dashboard
+
+3. login with superuser in '127.0.0.1:8000/admin/'
+    
+    there will be category with {app}
+    create / change available
