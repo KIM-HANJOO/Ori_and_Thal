@@ -1,0 +1,60 @@
+URL :
+
+assume - project name is currently 'webnest'
+
+1. how do django urls work ?
+    > vim webnest/urls.py
+    > in VIM,
+        >>> urlpatterns = [
+            path('admin/', admin.site.urls),
+        ]
+
+
+2. making 'home' url, homepage of the website
+    # also applied in making any urls
+
+    > vim webnest/urls.py
+    > in VIM,
+        >>> urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('', include('blog.urls')), # 'blog' model as homepage('')
+        ]
+
+    now, have to make 'blog/urls.py' file.
+
+    > vim blog/urls.py
+    > in VIM,
+        >>> from django.urls import path # path is django fuction,
+        >>> from . import views # views, which will be used in application
+        >>>
+        >>> urlpatterns = [
+        >>>     path('', views.post_list, name='post_list'), # post_list (root url) : view
+        >>> ]
+
+    
+    as 'post_list' is set as the root url (''), 
+    when anyone to website, 'views.post_list' will be shown
+    "~, name='post_list'" is the name of url ('')
+
+
+3. make 'view' of the url
+    'view' is the logic of application.
+    [Model] -> [view] -> [Template] (site we're seeing)
+
+    > vim blog/views.py
+    > in VIM,
+        >>> from django.shortcuts import render
+        >>>
+        >>> def post_list(requenst) :
+        >>> return render(request, 'blog/post_list.html', {})
+
+    this function will get 'request', call 'render' method, show returned 'blog/post_list.html' from render method
+
+
+4. make template('blog/post_list.html') for view
+    under 'blog' dir,
+    > mkdir blog/templates
+    > mkdir blog/templates/blog
+
+    (rule-of-thumbs, to well find the loc of folders)
+
