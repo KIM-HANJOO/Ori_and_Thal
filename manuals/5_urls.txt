@@ -47,3 +47,14 @@ assume - project name is currently 'webnest'
         >>>
         >>> def post_list(requenst) :
         >>> return render(request, 'blog/post_list.html', {})
+
+    this function will get 'request', call 'render' method, show returned 'blog/post_list.html' from render method
+
+
+4. make template('blog/post_list.html') for view
+    under 'blog' dir,
+    > mkdir blog/templates
+    > mkdir blog/templates/blog
+
+    (rule-of-thumbs, to well find the loc of folders)
+
