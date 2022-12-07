@@ -1,0 +1,81 @@
+### installing django, activating vertual env.
+
+1. update pip
+    > pip install --upgrade pip
+
+2. install django
+    > pip3 install django
+
+3. activate myvenv (vertualenv)
+    > source myvenv(dirname)/bin/activate
+    > pip -V # check if activated
+
+    after myvenv is activated,
+    using 'python' instead of 'python3' will be possible,
+    myvenv finds the right version for 'python'
+
+
+### django setups
+
+4. django basic structure setup
+    > django-admin startproject mysite .
+
+
+    after the code runs,
+    'manage.py'
+    'mysite' (dir) will be made
+
+    under 'mysite',
+        'settings.py'   # setup file for the website
+        'urls.py'
+        'wsgi.py'
+        '__init__.py'
+
+
+5. 'mysite/settings.py' adjust
+    > vim mysite/settings.py
+    > in VIM,
+        TIME_ZONE = 'Asia/Seoul'
+
+        # if using 'pythonanywhere.com' for publishing,
+
+        ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+        # if DEBUG == True, ALLOWED_HOSTS is empty,
+        # host is initially allowable to ['localhost', '127.0.0.1', '[::1]']
+
+        # after the last line,
+        STATIC_URL = '/ststic/'
+        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+        ## adds path of static file directory (static means static design, with CSS)
+
+6. setting database
+    there are many different software,
+    what will be used here is 'sqlite3', which is already installed inside 'mysite/settings.py'
+
+    > vim mysite/settings.py
+    > in VIM,
+        DATABASE = {
+            'default' : {
+                'ENGINE' : 'django.db.backends.sqlite3',
+                'NAME' : os.path.join(BASE_DIR, 'db.sqlite3'),
+                # or, already wrote as 'NAME' : BASE_DIR / 'db.sqlite3'
+            }
+        }
+
+7. generate Database to website
+    > python manage.py migrate 
+
+$$$$$ ERROR CASE $$$$$
+    if "name 'os' is not defined" error occurs,
+    > vim 'mysite/settings.py'
+    > in VIM,
+        in beginning, add 'import os'
+
+8. start web server to see if the site is properly opened
+    > python manage.py runserver
+    '127.0.0.1:8000' in web browser will show the website currently running
+
+    if want to stop the server,
+        > ctrl + C
+

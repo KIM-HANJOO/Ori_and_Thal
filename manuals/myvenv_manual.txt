@@ -1,0 +1,12 @@
+if want to activate myvenv (virtualenv),
+    > source myvenv/bin/activate
+
+if try to check if virtualenv is activated,
+    > pip -V
+
+and if the result shows the python in myvenv / directory, it's activated.
+    > deactivate
+    > pip -V
+
+and now the result is different.
+

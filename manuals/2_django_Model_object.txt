@@ -1,0 +1,156 @@
+0. 
+SQLite to make and handle database,
+Model inside the database can be likened as 'spreadsheet' in Excel
+
+Steps :
+    1) make application(model)
+        > python manage.py startapp {app}
+
+    2) apply application(model) in 'mysite/settings.py'
+        > vim mysite/settings.py
+        >>> INSTALLED_APPS = [
+            ...
+            '{app}'
+            ]
+
+    3) write code for application(model), using class (inherit models.Model)
+        > vim {app}/models.py
+
+        >>> from django.conf import settings
+        >>> from django.db import models
+        >>> from django.utils import timezone
+        >>>
+        >>> class Tmodel(models.Model) :
+
+    4) apply to database.db
+        > python manage.py makemigrations {app}
+        > python manage.py migrate {app}
+
+
+# More in details
+
+1. Make application
+    > python manage.py startapp blog
+
+    will add 'blog' directory, with files inside.
+    >> blog
+        migrations
+            __init__.py
+        __init__.py
+        admin.py
+        models.py
+        tests.py
+        views.py
+
+
+2. application ('blog') is made, now we have to announce to 'mysite/settings.py'
+    that we'll add 'blog' application to the website
+
+    > vim mysite/settings.py
+    > in VIM,
+        INSTALLED_APPS = [
+            'django.contrib.admin',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.messages',
+            'django.contrib.staticfiles',
+            'blog', ## this one is what you have to add
+        ]
+
+    ## this will update 'blog' application to the website, via 'mysite/settings.py'
+
+
+3. Make (/ change generated 'blog/models.py') model of 'blog'
+
+    > vim blog/models.py
+    > in VIM, 
+        # initially, only one line included (from django.db import models)
+
+        # what will be added ? :
+
+        from django.conf import settings
+        from django.utils import timezone
+
+
+        # class for the model (model is an 'object')
+        class Post(models.Model) :
+            # heritage 'models.Model', to announce and make class 'Post' a type of model in website
+
+            def publish(self) : # method of class
+                self.save()
+
+$$$$$$$$$ example in Django Tutorial page $$$$$$$$$
+
+>>> from django.conf import settings
+>>> from django.db import models
+>>> from django.utils import timezone
+>>> 
+>>> 
+>>> class Post(models.Model):
+>>> 	author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+>>>     title = models.CharField(max_length=200)
+>>>     text = models.TextField()
+>>>     created_date = models.DateTimeField(
+>>>     default=timezone.now)
+>>>     published_date = models.DateTimeField(
+>>>     blank=True, null=True)
+>>> 
+>>>     def publish(self):
+>>>         self.published_date = timezone.now()
+>>>         self.save()
+>>> 
+>>>     def __str__(self):
+>>>         return self.title
+>>> 
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+    what is in models ? :
+
+    models.CharFiled : text with limited length of letter, 
+                        usually used in short string variable such as 'title'
+
+    models.TextField : text with unlimited length
+
+    models.DateTimeField : means date and hour
+
+    models.ForeignKey : link to other models
+
+    more information about model and field, is in the link
+    https://docs.djangoproject.com/en/2.0/ref/models/fields/#field-types
+
+
+
+4. make table in the database, in the model ('Post')
+
+    > python manage.py makemigrations blog
+        $ Migrations for 'blog' :
+        $   blog/migrations/0001_initial.py:
+        $   - Create model Post
+
+    migration file is used to immediately update things on the Database 
+    after migration Models,
+    you can use command to apply models to real Database :
+
+    > python manage.py migrate blog
+
+
+#. Where is the Database ?
+    database.db is the database we're adverting in the passage.
+    the location/directory is defined in 'mysite/settings.py', in DATABASE = {},
+    initially the dir is set as 'default', and 'NAME' : BASE_DIR / 'db.sqlite3'
+
+    by the reference, https://stackoverflow.com/questions/7431138/where-is-the-sqlite-database-file-created-by-django,
+
+    there is Django shell, accessible by running the command :
+    > python manage.py shell
+    
+    and by following,
+    >>> import settings
+    >>> os.path.abspath(settings.DATABASES['default']['NAME'])
+
+    we can retrieve the 'NAME' value that holds the location of database.db
+
+
