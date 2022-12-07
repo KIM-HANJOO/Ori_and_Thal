@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l8k94r==e7)qc96gszk7j@k5hd!%)%gontu!wg&gjh9k7^fuu2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.219.103:8000', '.duckdns.org'] #'.pythonanywhere.com' 
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.219.103', '119.67.26.134', 'kimhanjoo.duckdns.org'] #'.pythonanywhere.com' 
 
 
 # Application definition
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'webnest.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'webnest.wsgi.application'
 
 
 # Database
