@@ -1,0 +1,15 @@
+
+QuerySet is a list of transfered Model objects
+
+QS reads the data from the database, able to use 'filter' or 'sort' options
+
+1. Interactive Console
+    > python manage.py shell
+
+    (InteractiveConsole)
+    >>>
+
+    able to use all python fuctions,
+    in addition to the django options
+
+2. 
