@@ -7,10 +7,20 @@ h1 a {
     font-family:'Raleway';
 }
 
-div #header {
-    border : 1px solid black
+#header {
+    border : solid ;
+    border-color : black;
+    padding-left : 10%;
+    padding-right : 10%;
+    padding-top : 1%;
+    padding-bottom : 1%;
 }
 
-div #main {
-    border : 1px solid black
+#main {
+    border : solid ;
+    border-color : black;
+    padding-left : 10%;
+    padding-right : 10%;
+    padding-top : 1%;
+    padding-bottom : 1%;
 }
